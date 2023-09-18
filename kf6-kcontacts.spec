@@ -1,6 +1,6 @@
 %define libname %mklibname KF6Contacts
 %define devname %mklibname KF6Contacts -d
-%define git 20230909
+%define git 20230918
 
 Name: kf6-kcontacts
 Version: 5.240.0
