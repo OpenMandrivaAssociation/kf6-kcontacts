@@ -1,6 +1,6 @@
 %define libname %mklibname KF6Contacts
 %define devname %mklibname KF6Contacts -d
-%define git 20230927
+%define git 20231005
 
 Name: kf6-kcontacts
 Version: 5.240.0
@@ -76,7 +76,6 @@ Library for working with contact information
 %files -n %{devname}
 %{_includedir}/KF6/KContacts
 %{_libdir}/cmake/KF6Contacts
-%{_qtdir}/mkspecs/modules/qt_KContacts.pri
 %{_qtdir}/doc/KF6Contacts.*
 
 %files -n %{libname}
