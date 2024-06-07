@@ -6,7 +6,7 @@
 #define git 20240217
 
 Name: kf6-kcontacts
-Version: 6.2.0
+Version: 6.3.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/kcontacts/-/archive/master/kcontacts-master.tar.bz2#/kcontacts-%{git}.tar.bz2
@@ -40,6 +40,9 @@ BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6Codecs)
 Requires: %{libname} = %{EVRD}
+BuildSystem: cmake
+BuildOption: -DBUILD_QCH:BOOL=ON
+BuildOption: -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 
 %description
 Library for working with contact information
@@ -62,22 +65,6 @@ Development files (Headers etc.) for %{name}.
 
 Library for working with contact information
 
-%prep
-%autosetup -p1 -n kcontacts-%{?git:master}%{!?git:%{version}}
-%cmake \
-	-DBUILD_QCH:BOOL=ON \
-	-DBUILD_WITH_QT6:BOOL=ON \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-	-G Ninja
-
-%build
-%ninja_build -C build
-
-%install
-%ninja_install -C build
-
-%find_lang %{name} --all-name --with-qt --with-html
-
 %files -f %{name}.lang
 %{_datadir}/qlogging-categories6/kcontacts.*
 
@@ -88,3 +75,4 @@ Library for working with contact information
 
 %files -n %{libname}
 %{_libdir}/libKF6Contacts.so*
+%{_qtdir}/qml/org/kde/contacts
